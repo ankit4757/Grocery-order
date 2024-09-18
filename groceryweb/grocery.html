@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Order App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f3f6;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        .category h2 {
+            background-color: #0984e3;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #74b9ff;
+            color: white;
+        }
+        td input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        td input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        .order-btn {
+            background-color: #00b894;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .order-btn:hover {
+            background-color: #019875;
+        }
+        .total {
+            text-align: right;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        .billing-section {
+            display: none;
+            margin-top: 20px;
+        }
+        .billing-section h2 {
+            background-color: #fd79a8;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+        .billing-section form {
+            margin-top: 20px;
+        }
+        .billing-section form .form-field {
+            margin-bottom: 15px;
+        }
+        .billing-section form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .billing-section form button {
+            background-color: #0984e3;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .billing-section form button:hover {
+            background-color: #016fb9;
+        }
+
+        /* Responsive design */
+        @media only screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            table, th, td {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Grocery Order</h1>
+    <div class="container">
+        <!-- Fruits Category -->
+        <div class="category">
+            <h2>Fruits</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-price="1.5"></td>
+                        <td>Apples</td>
+                        <td>$1.50 per lb</td>
+                        <td><input type="number" class="quantity" min="0" value="0" data-price="1.5"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-price="0.6"></td>
+                        <td>Bananas</td>
+                        <td>$0.60 each</td>
+                        <td><input type="number" class="quantity" min="0" value="0" data-price="0.6"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Dairy Category -->
+        <div class="category">
+            <h2>Dairy</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-price="3.0"></td>
+                        <td>Milk</td>
+                        <td>$3.00 per gallon</td>
+                        <td><input type="number" class="quantity" min="0" value="0" data-price="3.0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-price="2.5"></td>
+                        <td>Eggs</td>
+                        <td>$2.50 per dozen</td>
+                        <td><input type="number" class="quantity" min="0" value="0" data-price="2.5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Bakery Category -->
+        <div class="category">
+            <h2>Bakery</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-price="2.0"></td>
+                        <td>Bread</td>
+                        <td>$2.00 per loaf</td>
+                        <td><input type="number" class="quantity" min="0" value="0" data-price="2.0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-price="3.5"></td>
+                        <td>Bagels</td>
+                        <td>$3.50 per pack</td>
+                        <td><input type="number" class="quantity" min="0" value="0" data-price="3.5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Total Price -->
+        <div class="total">
+            Total: $<span id="total-price">0.00</span>
+        </div>
+        <button class="order-btn">Place Order</button>
+
+        <!-- Billing Section -->
+        <div class="billing-section" id="billing-section">
+            <h2>Billing Details</h2>
+            <form>
+                <div class="form-field">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" placeholder="Billing Address" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" placeholder="City" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" placeholder="State" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" placeholder="Zip Code" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" placeholder="Credit Card Number" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" placeholder="CVV" required>
+                </div>
+                <div class="form-field">
+                    <button type="submit">Submit Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.item-checkbox');
+        const quantities = document.querySelectorAll('.quantity');
+        const totalPriceElement = document.getElementById('total-price');
+        const orderButton = document.querySelector('.order-btn');
+        const billingSection = document.getElementById('billing-section');
+
+        function updateTotal() {
+            let total = 0;
+
+            checkboxes.forEach((checkbox, index) => {
+                const quantityInput = quantities[index];
+                const quantity = parseFloat(quantityInput.value);
+                const price = parseFloat(quantityInput.getAttribute('data-price'));
+
+                if (checkbox.checked && quantity > 0) {
+                    total += quantity * price;
+                }
+            });
+
+            totalPriceElement.innerText = total.toFixed(2);
+        }
+
+        // Add event listeners to update total price
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateTotal);
+        });
+
+        quantities.forEach(quantityInput => {
+            quantityInput.addEventListener('input', updateTotal);
+        });
+
+        // Show billing section when "Place Order" is clicked
+        orderButton.addEventListener('click', () => {
+            const total = parseFloat(totalPriceElement.innerText);
+            if (total > 0) {
+                billingSection.style.display = 'block';
+            } else {
+                alert('Please select items and quantities before placing an order.');
+            }
+        });
+    </script>
+</body>
+</html>
